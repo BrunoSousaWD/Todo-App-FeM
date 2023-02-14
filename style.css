@@ -1,0 +1,461 @@
+/*
+## Layout
+
+The designs were created to the following widths:
+
+- Mobile: 375px
+- Desktop: 1440px
+
+## Colors
+
+### Primary
+
+- Bright Blue: hsl(220, 98%, 61%)
+- Check Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)
+
+### Neutral
+
+### Light Theme
+
+- Very Light Gray: hsl(0, 0%, 98%)
+- Very Light Grayish Blue: hsl(236, 33%, 92%)
+- Light Grayish Blue: hsl(233, 11%, 84%)
+- Dark Grayish Blue: hsl(236, 9%, 61%)
+- Very Dark Grayish Blue: hsl(235, 19%, 35%)
+
+### Dark Theme
+
+- Very Dark Blue: hsl(235, 21%, 11%)
+- Very Dark Desaturated Blue: hsl(235, 24%, 19%)
+- Light Grayish Blue: hsl(234, 39%, 85%)
+- Light Grayish Blue (hover): hsl(236, 33%, 92%)
+- Dark Grayish Blue: hsl(234, 11%, 52%)
+- Very Dark Grayish Blue: hsl(233, 14%, 35%)
+- Very Dark Grayish Blue: hsl(237, 14%, 26%)
+
+## Typography
+
+### Body Copy
+
+- Font size: 18px
+
+### Font
+
+- Family: [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans)
+- Weights: 400, 700
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+    --clr-text: hsl(235, 21%, 11%);
+    --clr-bg-body: hsl(0, 0%, 98%);
+    --clr-vlgb: hsl(236, 33%, 92%);
+    --clr-lgb: hsl(233, 11%, 84%);
+    --clr-secondary: hsl(236, 9%, 61%);
+    --clr-primary: hsl(235, 19%, 35%);
+
+}
+
+.darkmode {
+    --clr-bg-body: hsl(235, 21%, 11%);
+    --clr-main: hsl(235, 24%, 19%);
+    --clr-primary: hsl(234, 39%, 85%);
+    --clr-border: hsl(234, 11%, 52%);
+    --clr-text: hsl(233, 14%, 35%);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+}
+
+
+html {
+    color-scheme: dark light;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* main */
+body {
+    background: var(--clr-bg-body);
+    color: var(--clr-text);
+}
+
+
+/* darkmode properties start*/
+#dark-bg {
+    display: none;
+}
+
+#light-switch {
+    display: none;
+}
+
+.list ul li.darkmode {
+    background: var(--clr-main);
+    border-bottom: 1px solid var(--clr-border);
+    color: var(--clr-primary);
+}
+
+
+.list ul li.darkmode:nth-child(1) {
+    border: 1px solid transparent;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.list ul li.darkmode.dragging {
+    background: var(--clr-bg-body);
+}
+
+.list ul li.darkmode.checked {
+    color: var(--clr-text);
+}
+
+.list.darkmode {
+    background: var(--clr-main);
+    color: var(--clr-primary);
+    border: 1px solid transparent;
+
+}
+
+.todo-input.darkmode {
+    background: var(--clr-main);
+    color: var(--clr-primary);
+}
+
+.todo-input.darkmode input[type='checkbox'],
+.list ul li.darkmode input[type='checkbox'] {
+    border: 1px solid var(--clr-border);
+}
+
+.list ul li.darkmode input[type='checkbox']:hover:not(:checked) {
+    background: linear-gradient(var(--clr-main), var(--clr-main)) padding-box,
+        linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+footer.darkmode {
+    background: var(--clr-main);
+    border: 0px solid transparent;
+    border-radius: 0 0 5px 5px;
+}
+
+
+
+/*.darkmode properties ends */
+
+
+.checked {
+    text-decoration: line-through;
+    color: var(--clr-lgb);
+}
+
+.container {
+    max-width: 37.5%;
+    margin: 0 auto;
+    position: relative;
+    bottom: 222px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 3em;
+}
+
+.title p {
+    font-size: 1.95rem;
+    letter-spacing: .7ch;
+    font-weight: 700;
+}
+
+.title img:hover {
+    cursor: pointer;
+}
+
+.todo-input {
+    display: flex;
+    gap: 1em;
+    padding: 20px;
+    border-radius: 5px;
+    background: white;
+    margin-bottom: 1.5em;
+}
+
+
+.todo-input input[type='text'] {
+    width: 90%;
+    border: none;
+    outline: none;
+    background: inherit;
+    color: inherit;
+}
+
+.todo-input input[type='text']::placeholder {
+    font-size: .95rem;
+}
+
+.todo-input input[type='checkbox'],
+.list ul li input[type='checkbox'] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--clr-vlgb);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.todo-input input[type='checkbox']:hover,
+.list ul li input[type='checkbox']:checked {
+    background-image: linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    position: relative;
+}
+
+
+
+.todo-input input[type='checkbox']:hover::after,
+.list ul li input[type='checkbox']:checked::after {
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 999;
+    inset: 0;
+    background-image: url('images/icon-check.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    height: 22px;
+}
+
+
+.list ul li input[type='checkbox']:hover:not(:checked) {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+
+#error {
+    display: none;
+    position: relative;
+    bottom: 20px;
+    color: rgb(255, 0, 0);
+    margin-left: 20px;
+    font-size: .95rem;
+}
+
+
+.list {
+    background: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(0, 0, 0, 0.16);
+    box-shadow: 5px 5px 22px 7px rgba(0, 0, 0, 0.16);
+}
+
+.list ul li {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--clr-lgb);
+    cursor: pointer;
+}
+
+.list ul li img {
+    display: none;
+    float: right;
+}
+
+
+.list ul li:hover img {
+    display: block;
+    cursor: pointer;
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: .75rem;
+    padding: 20px;
+}
+
+
+footer p {
+    color: var(--clr-secondary);
+}
+
+footer .nav {
+    display: flex;
+    gap: 1em;
+    color: var(--clr-secondary);
+    font-weight: 700;
+}
+
+.footer .nav a,
+footer .clear {
+    cursor: pointer;
+
+}
+
+a.selected {
+    color: hsl(220, 98%, 61%);
+    outline: none;
+}
+
+footer a:hover,
+.clear:hover {
+    color: var(--clr-primary);
+}
+
+
+.description {
+    position: relative;
+    bottom: 170px;
+    font-size: .8rem;
+    color: var(--clr-secondary);
+    text-align: center;
+}
+
+
+.dragging {
+    background: rgba(128, 128, 128, 0.518);
+}
+
+.footer-nav-mobile {
+    display: none;
+}
+
+.attribution {
+    position: relative;
+    bottom: 130px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+
+@media (max-width:400px) {
+    .container {
+        max-width: 90%;
+        bottom: 155px;
+    }
+
+    .title {
+        margin-bottom: 1.75em;
+    }
+
+    .title p {
+        font-size: 1.6rem;
+    }
+
+    .title img {
+        max-width: 7%;
+    }
+
+    .todo-input {
+        margin-bottom: 1em;
+        font-size: .85rem;
+    }
+
+    .todo-input input[type='text']::placeholder {
+        font-size: .8rem;
+        color: var(--clr-secondary);
+    }
+
+    #error {
+        font-size: .75rem;
+        bottom: 14px;
+    }
+
+    .list ul li {
+        gap: 1em;
+        font-size: .85rem;
+    }
+
+    .list ul li img {
+        display: block;
+        max-width: 60%;
+    }
+
+    .todo-input,
+    .list ul li {
+        padding: 15px;
+    }
+
+    footer {
+        padding: 18px;
+        font-size: .65rem;
+    }
+
+    footer .nav {
+        display: none;
+    }
+
+    .footer-nav-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 1em;
+        padding: 18px;
+        border-radius: 5px;
+        background: white;
+        font-size: .8rem;
+        font-weight: 700;
+        color: var(--clr-secondary);
+        margin-bottom: 4em;
+
+    }
+
+    .footer-nav-mobile.darkmode {
+        background: var(--clr-main);
+    }
+
+    .list.darkmode {
+        background: none;
+    }
+
+
+}
