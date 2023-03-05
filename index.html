@@ -15,12 +15,13 @@
 <body>
   <header>
     <picture>
-      <source srcset="images/bg-mobile-light.jpg" id="light-bg-mb" media="(max-width:400px)">
+      <source srcset="images/bg-mobile-light.jpg" id="light-bg-mb" media="(max-width:375px)" alt="mountains">
       <img src="images/bg-desktop-light.jpg" id="light-bg" alt="mountains">
     </picture>
     <picture>
-      <source srcset="images/bg-mobile-dark.jpg" id="dark-bg-mb" media="(max-width:400px)">
-      <img src="images/bg-desktop-dark.jpg" id="dark-bg" alt="">
+      <source srcset="images/bg-mobile-dark.jpg" id="dark-bg-mb" media="(max-width:375px)"
+        alt="mobile darkmode background">
+      <img src="images/bg-desktop-dark.jpg" id="dark-bg" alt="darkmode background">
     </picture>
 
 
@@ -29,14 +30,15 @@
   <main>
     <div class="container">
       <div class="title">
-        <p>TODO</p>
+        <h1>TODO</h1>
         <img src="images/icon-moon.svg" alt="moon turn dark mode on" id="dark-switch">
         <img src="images/icon-sun.svg" alt="sun turn light mode on" id="light-switch">
       </div>
 
       <div class="todo-input" id="todo-input">
-        <input type="checkbox" id="add-input" onclick="addListItem()">
-        <input type="text" maxlength="40" id="input-value" placeholder="Create a new todo...">
+        <input type="checkbox" id="add-input" onclick="addListItem()" aria-label="add input">
+        <input type="text" maxlength="40" id="input-value" placeholder="Create a new todo..."
+          aria-label="create todo input">
       </div>
       <p id="error">Invalid input</p>
       <div class="list" id="list">
@@ -65,7 +67,7 @@
     <p class="description">Drag and drop to reorder list</p>
   </main>
 
-  <div class="attribution">
+  <div role="footer" class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">de Sousa</a>.
   </div>
