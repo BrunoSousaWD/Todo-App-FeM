@@ -70,7 +70,7 @@ function removeCount() {
 
 //append to list
 const listItems = [];
-let innitialPosition;
+
 
 function addListItem() {
     let todoList = document.getElementById("todo-list");
@@ -114,59 +114,14 @@ function addListItem() {
         item[k].setAttribute('list-pos', k);
     }
 
+    //drag and drop
+    dragAndDrop();
     //complete
     complete(checkbox);
     //clear item
     deleteItem(close);
 
-    //drag and drop
-    dragAndDrop();
-}
 
-//dragAndDrop
-function dragStart() {
-    innitialPosition = this.getAttribute('list-pos');
-}
-function dragEnter() {
-    this.classList.add('dragging');
-}
-function dragLeave() {
-    this.classList.remove('dragging');
-}
-function dragOver(e) {
-    e.preventDefault();
-}
-function dragDrop() {
-    this.classList.remove('dragging');
-
-    const dropPosition = this.getAttribute('list-pos');
-
-    swapItem(innitialPosition, dropPosition);
-}
-//swap listItems
-function swapItem(startPos, dropPos) {
-    //save the dropItem
-    const dropItem = listItems[dropPos].innerHTML;
-
-    //swap the drop item with the drag item
-    listItems[dropPos].innerHTML = listItems[startPos].innerHTML;
-    listItems[startPos].innerHTML = dropItem;
-}
-
-function dragAndDrop() {
-    const draggables = document.querySelectorAll('.draggable');
-    const container = document.querySelectorAll('.draggable-list li');
-
-    draggables.forEach(draggable => {
-        draggable.addEventListener('dragstart', dragStart);
-    })
-
-    container.forEach(item => {
-        item.addEventListener('dragover', dragOver);
-        item.addEventListener('drop', dragDrop);
-        item.addEventListener('dragenter', dragEnter);
-        item.addEventListener('dragleave', dragLeave);
-    })
 }
 
 //complete
@@ -197,6 +152,70 @@ function deleteItem(close) {
         }
     }
 }
+
+
+function dragAndDrop() {
+    const draggables = document.querySelectorAll('.draggable');
+    const container = document.querySelectorAll('.draggable-list li');
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', dragStart);
+    })
+
+    container.forEach(item => {
+        item.addEventListener('dragover', dragOver);
+        item.addEventListener('drop', dragDrop);
+        item.addEventListener('dragenter', dragEnter);
+        item.addEventListener('dragleave', dragLeave);
+    })
+}
+
+
+//swap listItems
+function swapItem(startPos, dropPos) {
+    //save the dropItem
+    const dropItem = listItems[dropPos].innerHTML;
+
+    //swap the drop item with the drag item
+    listItems[dropPos].innerHTML = listItems[startPos].innerHTML;
+    listItems[startPos].innerHTML = dropItem;
+
+    let checkbox = listItems[startPos].firstChild;
+    let dropCheckbox = listItems[dropPos].firstChild;
+
+    complete(checkbox);
+    complete(dropCheckbox);
+
+    let startClose = listItems[startPos].lastChild;
+    let dropClose = listItems[dropPos].lastChild;
+    deleteItem(startClose);
+    deleteItem(dropClose);
+}
+
+
+//dragAndDrop
+let innitialPosition;
+
+function dragStart() {
+    innitialPosition = this.getAttribute('list-pos');
+}
+function dragEnter() {
+    this.classList.add('dragging');
+}
+function dragLeave() {
+    this.classList.remove('dragging');
+}
+function dragOver(e) {
+    e.preventDefault();
+}
+function dragDrop() {
+    this.classList.remove('dragging');
+
+    const dropPosition = this.getAttribute('list-pos');
+    swapItem(innitialPosition, dropPosition);
+}
+
+
 
 //Darkmode
 let darkMode = document.getElementById("dark-switch");
